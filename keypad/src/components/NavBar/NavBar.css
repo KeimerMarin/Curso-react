@@ -7,11 +7,11 @@ a {
     text-decoration: none;
     font-weight: 500;
     color: black;
-  }
+}
   
-  ul {
+ul {
     list-style: none;
-  }
+}
 .nav-main {
   font-size: 17px;
   display: flex;
@@ -19,7 +19,7 @@ a {
   align-items: center;
   height: 60px;
 }
-.nav-main .nav-logo {
+.nav-logo {
   align-items: center;
   width: 90px;
   margin-top: 20px;

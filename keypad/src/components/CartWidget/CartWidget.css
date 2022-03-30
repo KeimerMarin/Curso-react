@@ -1,0 +1,10 @@
+.nav-icon {
+    color: #a70909;
+    width: 2em;
+    height: 2em;    
+  }
+
+.nav-icon :hover {
+    opacity: 0.9;
+    color: black;
+  }

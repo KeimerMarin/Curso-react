@@ -1,6 +1,6 @@
 import './NavBar.css'
 import logoKeypad from './img/LogoKeypad.png'
-
+import CartWidget from '../CartWidget/CartWidget'
 
 const NavBar = () => {
     return (
@@ -14,6 +14,9 @@ const NavBar = () => {
             <li><a href="#">Acceso y Video</a></li>  
             <li><a href="#">Contactenos</a></li>           
         </ul> 
+        <div>
+            <CartWidget/>
+        </div>
         </nav>
     )
 }
