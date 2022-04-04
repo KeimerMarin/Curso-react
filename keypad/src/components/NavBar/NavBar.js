@@ -5,8 +5,8 @@ import CartWidget from '../CartWidget/CartWidget'
 const NavBar = () => {
     return (
         <nav className="nav-main">
-        <img src={logoKeypad} alt="Keypad" class="nav-logo"/>
-        <ul class="nav-menu">
+        <img src={logoKeypad} alt="Keypad" className="nav-logo"/>
+        <ul className="nav-menu">
             <li><a href="#">Inicio</a></li>
             <li><a href="#">CCTV</a></li>
             <li><a href="#">Alarmas</a></li>
