@@ -1,29 +1,13 @@
-.App {
-  text-align: center;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 } 
 
-/* @media (prefers-reduced-motion: no-preference) {
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background: linear-gradient(to right, #e3e3e385, #dbdbdb26, #F2F2F2, #e3e3e385);
 }
 
-
-.App-link {
-  color: #61dafb;
+.App {
+  text-align: center;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

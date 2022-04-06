@@ -6,4 +6,4 @@ const CartWidget = () => {
     <a href='#'><FiShoppingCart className='nav-icon'/>4</a>
     )
 }
-export default CartWidget
+export default CartWidget;

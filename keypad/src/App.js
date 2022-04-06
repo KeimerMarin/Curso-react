@@ -5,15 +5,15 @@ import ItemCount from './components/ItemCount/ItemCount'
 
 function App() {
 
-  const handleOnAdd = (quantity) => {
+/*  const handleOnAdd = (quantity) => {
     console.log(`se agregaron ${quantity} productos`);
   }
-
+  */
   return (
     <div className="App">
       <NavBar/>
       <ItemListContainer greeting={'Bienvenido a Keypad'}/>
-      <ItemCount initial={1} stock={10} onAdd={handleOnAdd}/>
+      {/* <ItemCount initial={1} stock={10} onAdd={handleOnAdd}/> */}
     </div>
   );
 }
