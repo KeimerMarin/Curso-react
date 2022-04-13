@@ -7,13 +7,10 @@ a {
     text-decoration: none;
     font-weight: 500;
     color: black;
-}
-  
-ul {
     list-style: none;
-}
+} 
 .nav-main {
-  font-size: 17px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,18 +20,16 @@ ul {
   align-items: center;
   width: 90px;
   margin-top: 20px;
+  margin-right: -25px;
 }
 .nav-menu {
   display: flex;
+  padding: 30px;
 }
-.nav-menu li {
+.Option{  
+  color: black;
   padding: 10px;
 }
-.nav-main ul li a {
-  color: black;
-  padding: 4px;
-}
-.nav-main ul li a:hover {
-  opacity: 0.9;
+.ActiveOption {  
   color: brown;
 }
