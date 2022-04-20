@@ -1,10 +1,10 @@
 import './ItemDetail.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import {Link} from 'react-router-dom'
+import ItemCount from '../ItemCount/ItemCount'
+import CartContext from '../../context/CartContext'
 
-
-
-const ButtonCount = ({ onConfirm, stock, initial = 0 }) => {
+/* const ButtonCount = ({ onConfirm, stock, initial = 0 }) => {
     const [count, setCount] = useState(initial)
     const increment = () => {
         setCount(count + 1)
@@ -23,13 +23,16 @@ const ButtonCount = ({ onConfirm, stock, initial = 0 }) => {
         </div>
     )
 }
-
+ */
 const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
-    const [quantity, setQuantity] = useState(0) 
+    const { addItem, isInCart } = useContext(CartContext)
 
     const handleAdd = (count) => {
-        console.log('Agregar al carrito')
-        setQuantity(count)
+        const productObj = {
+            id, name,price, quantity: count
+        }
+
+        addItem(productObj)
     }
     return (
         <div className="cardDetailProduct">
@@ -42,7 +45,7 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
                 <p className="Info"> {description}</p>
                 <p className="Info"> $ {price}</p>
                 <footer className='ItemFooter'> 
-                {quantity > 0 ? <Link to='/cart'>Ir al carrito</Link> : <ButtonCount onConfirm={handleAdd} stock={stock}/>}              
+                {isInCart(id) ? <Link to='/cart'>Ir al carrito</Link> : <ItemCount onAdd={handleAdd} stock={stock}/>}              
                 </footer>
             </section>           
         </div>

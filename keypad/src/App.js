@@ -4,6 +4,7 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemCount from './components/ItemCount/ItemCount'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import {CartContextProvider}  from './context/CartContext'
 
 
 function App() {
@@ -13,18 +14,19 @@ function App() {
   }
   */
   return (
-    <div className="App">
-    
+    <div className="App">    
      {/*  <ItemListContainer greeting={'Bienvenido a Keypad'}/> */}
       {/* <ItemCount initial={1} stock={10} onAdd={handleOnAdd}/> */}
-      <BrowserRouter>
-          <NavBar />
-          <Routes>
-          <Route path='/' element={<ItemListContainer />} />
-            <Route path='/category/:categoryId' element={<ItemListContainer />} />
-            <Route path='/detail/:productId' element={<ItemDetailContainer />} />
-          </Routes>
-        </BrowserRouter>
+      <CartContextProvider>
+        <BrowserRouter>
+            <NavBar />
+            <Routes>
+            <Route path='/' element={<ItemListContainer />} />
+              <Route path='/category/:categoryId' element={<ItemListContainer />} />
+              <Route path='/detail/:productId' element={<ItemDetailContainer />} />
+            </Routes>
+          </BrowserRouter>
+        </CartContextProvider>
     </div>
   );
 }
