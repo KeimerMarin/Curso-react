@@ -2,9 +2,10 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import ItemCount from './components/ItemCount/ItemCount'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {CartContextProvider}  from './context/CartContext'
+import Cart from './components/Cart/Cart';
+import { NotificationProvider } from './components/notification/Notification'
 
 
 function App() {
@@ -14,9 +15,8 @@ function App() {
   }
   */
   return (
-    <div className="App">    
-     {/*  <ItemListContainer greeting={'Bienvenido a Keypad'}/> */}
-      {/* <ItemCount initial={1} stock={10} onAdd={handleOnAdd}/> */}
+    <div className="App">  
+    <NotificationProvider>
       <CartContextProvider>
         <BrowserRouter>
             <NavBar />
@@ -24,9 +24,11 @@ function App() {
             <Route path='/' element={<ItemListContainer />} />
               <Route path='/category/:categoryId' element={<ItemListContainer />} />
               <Route path='/detail/:productId' element={<ItemDetailContainer />} />
+              <Route path='/cart' element={<Cart/>} />
             </Routes>
-          </BrowserRouter>
-        </CartContextProvider>
+        </BrowserRouter>
+      </CartContextProvider>
+    </NotificationProvider> 
     </div>
   );
 }

@@ -1,31 +1,15 @@
 import './ItemDetail.css'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
 import CartContext from '../../context/CartContext'
+import { useNotification } from '../notification/Notification'
 
-/* const ButtonCount = ({ onConfirm, stock, initial = 0 }) => {
-    const [count, setCount] = useState(initial)
-    const increment = () => {
-        setCount(count + 1)
-    }
-    const decrement = () => {
-        setCount(count - 1)
-
-    }
-
-    return (
-        <div>
-            <p>{count}</p>
-            <button onClick={decrement}>-</button>
-            <button onClick={increment}>+</button>
-            <button onClick={() => onConfirm(count)}>Agregar al carrito</button>
-        </div>
-    )
-}
- */
 const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
+
     const { addItem, isInCart } = useContext(CartContext)
+
+    const {setNotification} = useNotification()
 
     const handleAdd = (count) => {
         const productObj = {
@@ -33,6 +17,7 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
         }
 
         addItem(productObj)
+        setNotification('error', `Se agregaron ${count} ${name} correctamente`)
     }
     return (
         <div className="cardDetailProduct">
