@@ -2,18 +2,29 @@ import { useState, useEffect } from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
 import { firestoreDb } from '../../services/firebase'
-import { getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc, Firestore } from 'firebase/firestore'
 
 const ItemDetailContainer = ({setCart, cart}) => {
     const [product, setProduct] = useState()
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     
     const { productId } = useParams()
 
     useEffect(() => {
-        getDoc(doc(firestoreDb, 'products', productId)).then(response => {
+        setLoading(true)
+
+        const docRef = doc(firestoreDb, 'products', productId)
+
+        getDoc(docRef)
+        .then(response => {
             const product = { id: response.id, ...response.data()}
             setProduct(product)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        .finally(() => {
+            setLoading(false)
         })
 
         return (() => {
@@ -26,8 +37,8 @@ const ItemDetailContainer = ({setCart, cart}) => {
         <div className="ItemDetailContainer" >
             { 
                 product ? 
-                    <ItemDetail  {...product} setCart={setCart} cart={cart}/> :
-                    <h1>El producto no existe</h1> 
+                    <ItemDetail  {...product} setCart={setCart} cart={cart}/> 
+                    :<h1>El producto no existe</h1> 
             }
         </div>
     )    
