@@ -10,7 +10,7 @@ const CartItem = ({ id, name, quantity, price }) => {
     }
 
     return (    
-        <article className='CardCartItem'>
+        <div className='CardCartItem'>
             <header className="HeaderCartItem">
                 <h2 className="ItemHeaderCartItem">
                     {name}
@@ -30,7 +30,7 @@ const CartItem = ({ id, name, quantity, price }) => {
                 </p>
                 <button className='ButtonCartItem' onClick={() => handleRemove(id)}>X</button>
             </footer>
-        </article>
+        </div>
     )
 }
 

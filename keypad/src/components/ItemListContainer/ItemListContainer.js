@@ -32,10 +32,6 @@ const ItemListContainer = () => {
         })
     }, [categoryId]) 
 
-    if(products.length === 0) {
-        return <h1>No hay productos</h1>
-    }
-
 return (
         
         <div>

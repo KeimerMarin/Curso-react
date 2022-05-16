@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
 import { firestoreDb } from '../../services/firebase'
-import { getDoc, doc, Firestore } from 'firebase/firestore'
+import { getDoc, doc} from 'firebase/firestore'
 
 const ItemDetailContainer = ({setCart, cart}) => {
     const [product, setProduct] = useState()
@@ -34,7 +34,7 @@ const ItemDetailContainer = ({setCart, cart}) => {
     }, [productId])
 
     return (
-        <div className="ItemDetailContainer" >
+        <div>
             { 
                 product ? 
                     <ItemDetail  {...product} setCart={setCart} cart={cart}/> 

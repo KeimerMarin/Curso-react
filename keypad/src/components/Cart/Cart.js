@@ -1,83 +1,34 @@
 import './Cart.css'
-import { useContext, useState } from "react"
 import CartContext from "../../context/CartContext"
 import CartItem from "../CartItem/CartItem"
-import {getDocs, writeBatch, query, where, collection, documentId, addDoc} from 'firebase/firestore'
-import { firestoreDb } from "../../services/firebase/index"
+import { useContext} from "react"
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
-    const [loading, setLoading] = useState(false)
-    const { cart, clearCart, getTotal, getQuantity } = useContext(CartContext)  
 
-    const createOrder = () => {
-        setLoading(true)
-
-        const objOrder = {
-            items: cart,
-            buyer: {
-                name: 'Keimer Marin',
-                phone: '123456789',
-                email: 'keimermarin10@gmail.com'
-            },
-            total: getTotal(),
-            date: new Date()
-        }
-
-        const ids = cart.map(prod => prod.id)
-
-        const batch = writeBatch(firestoreDb)
-
-        const collectionRef = collection(firestoreDb, 'products')
-
-        const outOfStock = []
-
-        getDocs(query(collectionRef, where(documentId(), 'in', ids)))
-            .then(response => {
-                response.docs.forEach(doc => {
-                    const dataDoc = doc.data()
-                    const prodQuantity = cart.find(prod => prod.id === doc.id)?.quantity
-
-                    if(dataDoc.stock >= prodQuantity) {
-                        batch.update(doc.ref, { stock: dataDoc.stock - prodQuantity})
-                    } else {
-                        outOfStock.push({ id: doc.id, ...dataDoc })
-                    }
-                })
-            }).then(() => {
-                if(outOfStock.length === 0) {
-                    const collectionRef = collection(firestoreDb, 'orders')
-                    return addDoc(collectionRef, objOrder)
-                } else {
-                    return Promise.reject({ name: 'outOfStockError', products: outOfStock})
-                }
-            }).then(({ id }) => {
-                batch.commit()
-                console.log(`El id de la orden es ${id}`)
-            }).catch(error => {
-                console.log(error)
-            }).finally(() => {
-                setLoading(false)
-            })
-    }
-
-    if(loading) {
-        return <h1>Se esta generando su orden</h1>
-    }
-
-    if(getQuantity() === 0) {
+    const { cart, clearCart, getTotal } = useContext(CartContext)  
+    if(cart.length === 0) {
         return (
-            <h1>No hay Productos en el carrito</h1>
+            <>
+                <h1 className="emptyCart">Tu carrito está vacío</h1>
+                <div className="home">
+                    <Link to={'/'} className="return">Inicio</Link>
+                </div>
+            </>
         )
     }
     return (
         <div>
-            <h1>Cart</h1>
-            { cart.map(p => <CartItem key={p.id} {...p}/>) }
-            <h3>Total: ${getTotal()}</h3>
-            <button onClick={() => clearCart()} className="ButtonCart">Vaciar Carrito</button>
-            <button onClick={() => createOrder()} className="ButtonCart">Generar Orden</button>
+            <div className="pageCar">
+                <h2 className="cartTitle">carrito</h2>
+            </div>
+            {cart.map(prod => <CartItem key={prod.id}{...prod}/>)}
+            <p className="total">Total: ${getTotal()}</p>
+            <div className="btns">
+                <Link className="btnLower" to={'/'} onClick={() => clearCart()}>Vaciar carrito</Link>
+                <Link className="btnLower" to={'/form'}>Continuar </Link>
+            </div>
         </div>
-        
     )
 }
 

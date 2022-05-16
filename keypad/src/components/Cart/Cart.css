@@ -1,8 +1,41 @@
-.ButtonCart{
-    width: auto;
-    margin: 5px;
-    padding: 12px 12px;    
-    background: #101010;
-    border-radius: 8px;
-    color: #ffffff;
+.pageCar{
+    margin: 0 35px;
+}
+.emptyCart{
+    margin: 90px;
+}
+.home{
+    margin-bottom: 40px;
+}
+.return{
+    background-color: #0d0d4ad4;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.cartTitle{
+    font-size: 30px;
+    text-align: center;
+    line-height: 26.18px;
+    margin: 40px;
+}
+.total{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.btns{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.btnLower{
+    padding: 15px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 25px;
+    background-color: #0d0d4ad4;
+    color: white;
 }
